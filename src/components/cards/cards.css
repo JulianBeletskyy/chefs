@@ -1,0 +1,68 @@
+.meal-card,
+.chef-card {
+	height: 300px;
+	background-color: #fff;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.2);
+	cursor: pointer;
+}
+
+.meal-image,
+.chef-image {
+	position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    height: 180px;
+}
+
+.meal-image:after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.3);
+}
+
+.meal-card-name,
+.chef-card-name {
+	position: absolute;
+	right: 15px;
+	bottom: 15px;
+	color: #fbae17;
+	font-size: 18px;
+	font-weight: bold;
+	z-index: 1;
+    letter-spacing: 1px;
+	text-shadow: 
+     1px   0  0   #000, 
+    -1px   0  0   #000, 
+     0    1px 0   #000, 
+     0   -1px 0   #000, 
+     1px  1px 0   #000, 
+    -1px -1px 0   #000, 
+     1px -1px 0   #000, 
+    -1px  1px 0   #000,
+     1px  1px 1px #000;
+}
+
+.meal-card-desc {
+	overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.meal-card-body,
+.chef-card-body {
+	padding: 10px;
+}
+
+.meal-card-footer,
+.chef-card-footer {
+	padding: 0px 10px 10px 10px;
+}
+

@@ -1,0 +1,37 @@
+.dropdown {
+	position: relative;
+}
+
+.dropdown-title {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dropdown-list {
+	position: absolute;
+    background: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    top: 100%;
+    right: 0;
+    min-width: 100px;
+    box-shadow: 0px 1px 10px 1px rgba(0,0,0,0.2);
+	display: none;
+}
+
+.dropdown-list.show {
+	display: block;
+}
+
+.dropdown-item {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+	background-color: rgba(0,0,0,0.2);
+	color: #fff;
+	font-weight: bold;
+}

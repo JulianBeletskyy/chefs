@@ -1,0 +1,25 @@
+.sidebar {
+	position: fixed;
+	top: 65px;
+	bottom: 0;
+	left: 0;
+	width: 250px;
+	background-color: #fff;
+}
+
+.logo {
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    position: relative;
+}
+
+.chef-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}

@@ -1,60 +1,44 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy } from 'react'
+import { connect } from 'react-redux'
+import './App.css'
+import { Switch, Redirect } from 'react-router-dom'
+import PublicRoute from './layouts/PublicRoute'
+import PrivateRoute from './layouts/PrivateRoute'
+import Loader from './components/loader'
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      greeting: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const Login = lazy(() => import('./pages/login'))
+const Signup = lazy(() => import('./pages/signup'))
+const Landing = lazy(() => import('./pages/landing'))
+const Chefs = lazy(() => import('./pages/chefs'))
+const Dashboard = lazy(() => import('./pages/dashboard'))
+const Orders = lazy(() => import('./pages/orders'))
+const Meals = lazy(() => import('./pages/meals'))
+const ChefProfile = lazy(() => import('./pages/profile/chef'))
 
-  handleChange(event) {
-    this.setState({ name: event.target.value });
-  }
+const Modal = lazy(() => import('./components/modal'))
+const Notify = lazy(() => import('./components/notify'))
 
-  handleSubmit(event) {
-    event.preventDefault();
-    fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
-      .then(response => response.json())
-      .then(state => this.setState(state));
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="name">Enter your name: </label>
-            <input
-              id="name"
-              type="text"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
-          <p>{this.state.greeting}</p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+const App = ({dispatch}) => {
+  return (
+    <div className="App">
+      <Suspense fallback={<Loader />}>
+        <Switch>
+        	<PublicRoute path="/" exact component={Landing} />
+        	<PublicRoute path="/login" exact component={Login} />
+        	<PublicRoute path="/signup" exact  component={Signup} />
+          <PrivateRoute path="/chefs" exact type="client" component={Chefs} />
+          <PrivateRoute path="/dashboard" exact type="chef" component={Dashboard} />
+          <PrivateRoute path="/orders" exact type="chef" component={Orders} />
+          <PrivateRoute path="/meals" exact type="chef" component={Meals} />
+          <PrivateRoute path="/meals" exact type="chef" component={Meals} />
+          <PrivateRoute path="/chef-profile" exact type="chef" component={ChefProfile} />
+        	<Redirect to="/" />
+        </Switch>
+        <Modal />
+        <Notify />
+      </Suspense>
+    </div>
+  )
 }
 
-export default App;
+export default connect()(App)

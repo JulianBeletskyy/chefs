@@ -1,0 +1,9 @@
+.modal-body {
+
+}
+
+@media(min-width: 768px) {
+	.modal-body {
+		min-width: 800px;
+	}
+}

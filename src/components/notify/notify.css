@@ -1,0 +1,16 @@
+.notify {
+	position: fixed;
+	left: 0;
+	right: 0;
+    text-align: center;
+    padding: 15px;
+    background: rgb(53,203,75);
+    bottom: -50px;
+    color: #fff;
+    font-weight: bold;
+    transition: bottom .3s;
+}
+
+.notify.show {
+	bottom: 0;
+}
