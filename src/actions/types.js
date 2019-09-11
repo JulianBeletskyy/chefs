@@ -7,6 +7,9 @@ export const CLEAR_USER_STATE = 'CLEAR_USER_STATE'
 
 export const REORDER_ORDERS_LIST = 'REORDER_ORDERS_LIST'
 export const MOVE_ORDER_LIST = 'MOVE_ORDER_LIST'
+export const SET_ORDERS_KEY = 'SET_ORDERS_KEY'
+export const ADD_ORDER = 'ADD_ORDER'
+export const UPDATE_ORDER = 'UPDATE_ORDER'
 
 export const SET_MEALS_KEY = 'SET_MEALS_KEY'
 export const ADD_MEAL_KEY = 'ADD_MEAL_KEY'
@@ -17,3 +20,6 @@ export const CLOSE_MODAL = 'CLOSE_MODAL'
 export const SET_NOTIFY = 'SET_NOTIFY'
 
 export const SET_CHEFS_KEY = 'SET_CHEFS_KEY'
+
+export const SET_CART = 'SET_CART'
+export const CLEAR_CART = 'CLEAR_CART'

@@ -1,37 +1,57 @@
 import React, { Suspense, lazy } from 'react'
-import { connect } from 'react-redux'
 import './App.css'
 import { Switch, Redirect } from 'react-router-dom'
 import PublicRoute from './layouts/PublicRoute'
 import PrivateRoute from './layouts/PrivateRoute'
 import Loader from './components/loader'
 
+const pages = [
+  {
+    component: lazy(() => import('./pages/chefs')),
+    role: 'client',
+    url: '/chefs'
+  }, {
+    component: lazy(() => import('./pages/chef')),
+    role: 'client',
+    url: '/chef/:chefId'
+  }, {
+    component: lazy(() => import('./pages/dashboard')),
+    role: 'chef',
+    url: '/dashboard'
+  }, {
+    component: lazy(() => import('./pages/orders')),
+    role: 'chef',
+    url: '/orders'
+  }, {
+    component: lazy(() => import('./pages/meals')),
+    role: 'chef',
+    url: '/meals'
+  }, {
+    component: lazy(() => import('./pages/profile/chef')),
+    role: 'chef',
+    url: '/chef-profile'
+  }
+]
+
 const Login = lazy(() => import('./pages/login'))
 const Signup = lazy(() => import('./pages/signup'))
 const Landing = lazy(() => import('./pages/landing'))
-const Chefs = lazy(() => import('./pages/chefs'))
-const Dashboard = lazy(() => import('./pages/dashboard'))
-const Orders = lazy(() => import('./pages/orders'))
-const Meals = lazy(() => import('./pages/meals'))
-const ChefProfile = lazy(() => import('./pages/profile/chef'))
 
 const Modal = lazy(() => import('./components/modal'))
 const Notify = lazy(() => import('./components/notify'))
 
-const App = ({dispatch}) => {
+const App = () => {
   return (
     <div className="App">
       <Suspense fallback={<Loader />}>
         <Switch>
         	<PublicRoute path="/" exact component={Landing} />
         	<PublicRoute path="/login" exact component={Login} />
-        	<PublicRoute path="/signup" exact  component={Signup} />
-          <PrivateRoute path="/chefs" exact type="client" component={Chefs} />
-          <PrivateRoute path="/dashboard" exact type="chef" component={Dashboard} />
-          <PrivateRoute path="/orders" exact type="chef" component={Orders} />
-          <PrivateRoute path="/meals" exact type="chef" component={Meals} />
-          <PrivateRoute path="/meals" exact type="chef" component={Meals} />
-          <PrivateRoute path="/chef-profile" exact type="chef" component={ChefProfile} />
+        	<PublicRoute path="/signup" exact component={Signup} />
+          { 
+            pages.map(({url, role, component}, i) =>
+              <PrivateRoute key={i} path={url} exact type={role} component={component} />)
+          }
         	<Redirect to="/" />
         </Switch>
         <Modal />
@@ -41,4 +61,4 @@ const App = ({dispatch}) => {
   )
 }
 
-export default connect()(App)
+export default App

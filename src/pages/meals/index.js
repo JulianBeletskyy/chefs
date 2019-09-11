@@ -7,7 +7,7 @@ import { getMeals } from '../../actions/meals'
 import MealForm from '../../components/forms/MealForm'
 import './meals.css'
 
-const Dashboard = ({dispatch, meals}) => {
+const Meals = ({dispatch, meals}) => {
 	useEffect(() => {
 		dispatch(getMeals())
 	}, [])
@@ -16,7 +16,7 @@ const Dashboard = ({dispatch, meals}) => {
 	}
 	return (
 		<div className="meals h-100">
-			<div className="text-center py-2">
+			<div className="text-center mb-3">
 				<BtnMain title="Create Meal" onClick={openModal} />
 			</div>
 			<div className="row">
@@ -32,4 +32,4 @@ const mapStateToProps = ({meals}) => ({
 	meals: meals.list
 })
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(Meals)

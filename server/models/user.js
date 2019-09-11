@@ -66,16 +66,28 @@ export default (sequelize, DataTypes) => {
     {
       hooks: {
         beforeCreate: user => User.hashPassword(user),
-      }
+      },
     }
-  );
+  )
 
   User.associate = models => {
     User.hasMany(models.Meal, {
       foreignKey: 'userId',
       as: 'meals'
-    });
-  };
+    })
+
+    User.hasMany(models.Order, {
+      foreignKey: 'chefId',
+      as: 'chefOrders',
+    })
+
+    User.belongsToMany(models.Meal, {
+      as: 'Carts',
+      through: models.Cart,
+      foreignKey: 'userId',
+      otherKey: 'mealId',
+    })
+  }
 
   User.hashPassword = async user => {
     const hash = await bcryptjs.hash(user.password, process.env.SALT_ROUNDS*1)

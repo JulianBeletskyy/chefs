@@ -17,7 +17,7 @@ const responseHandler = alert => response => {
         const promise = makeJson(response, response.status)
         promise.then(({message}) => {
             if (alert && message) {
-                store.dispatch(setNotify(true, message))
+                store.dispatch(setNotify(true, message, response.status === 200 ? 'success' : 'error'))
             }
         })
         // store.dispatch(setUiKey('onRequest', false))

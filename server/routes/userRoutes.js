@@ -9,5 +9,6 @@ userRoutes.use(Auth.authorize, Auth.authRole)
 
 userRoutes.put('/', UserController.update)
 userRoutes.get('/chefs', UserController.getChefs)
+userRoutes.get('/chefs/:chefId', UserController.getChefInfo)
 
 export default userRoutes

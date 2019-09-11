@@ -1,5 +1,4 @@
 import { Meal } from '../models'
-import { Op } from 'sequelize'
 import upload from '../services/upload'
 
 const getMeals = async (req, res) => {

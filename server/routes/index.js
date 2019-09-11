@@ -2,7 +2,8 @@ import express from 'express'
 import authRoutes from './authRoutes'
 import userRoutes from './userRoutes'
 import mealRoutes from './mealRoutes'
-import paymentRoutes from './paymentRoutes'
+import cartRoutes from './cartRoutes'
+import orderRoutes from './orderRoutes'
 
 const apiRoutes = express.Router();
 
@@ -14,6 +15,7 @@ apiRoutes.get('/v1', (req, res) => res.status(200).json({
 apiRoutes.use('/auth', authRoutes)
 apiRoutes.use('/user', userRoutes)
 apiRoutes.use('/meals', mealRoutes)
-apiRoutes.use('/payment', paymentRoutes)
+apiRoutes.use('/cart', cartRoutes)
+apiRoutes.use('/order', orderRoutes)
 
 export default apiRoutes

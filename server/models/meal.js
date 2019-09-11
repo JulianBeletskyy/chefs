@@ -38,7 +38,7 @@ export default (sequelize, DataTypes) => {
 	  	},
 	  	weight: {
 	        type: DataTypes.INTEGER,
-	        allowNull: false,
+	        allowNull: true,
 	        defaultValue: 0
 	  	},
 	  	imgUrl: {

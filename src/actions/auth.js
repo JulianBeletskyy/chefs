@@ -27,11 +27,14 @@ export const login = data => dispatch => {
 }
 
 export const refreshToken = () => dispatch => {
+	dispatch(setUserKey('loading', true))
 	return get(`auth/refreshToken`).then(res => {
 		if (res.statusCode === 200) {
 			dispatch(setToken(res.token))
 			dispatch(setUserKey('data', res.user))
+			connectToUserRoom(res.user, res.token)
 		}
+		dispatch(setUserKey('loading', false))
 	})
 }
 

@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
-
-const randomId = () => {
-	return '_' + Math.random().toString(36).substr(2, 9)
-}
+import { randomId } from '../../utils'
 
 const TextArea = ({value, onChange, placeholder, className, label, id = randomId(), rows= 4}) => {
 	let input = null

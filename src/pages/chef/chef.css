@@ -1,0 +1,15 @@
+.chef {
+	/*padding-top: 15px;*/
+}
+.chef-info {
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.1);
+}
+.chef-image {
+
+}
+.chef-bussines-name {
+	font-size: 24px;
+}

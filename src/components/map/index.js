@@ -16,7 +16,7 @@ const geocode = options => {
   }).then(async response => response.json())
 }
 
-const GoggleMap = ({lat, lng, address, onChange}) => {
+const GoggleMap = ({lat, lng, address, onChange, readOnly = false, styles = {} }) => {
   const [ready, setReady] = useState(false)
   if (!lat || !lng) {
     lat = 50.61916542471506
@@ -24,34 +24,39 @@ const GoggleMap = ({lat, lng, address, onChange}) => {
   }
 
 	const handleClick = async ({lat, lng}) => {
-    const options = {
-      latlng: `${lat},${lng}`,
-      result_type: 'street_address|point_of_interest|park|natural_feature'
-    }
-    const { results: [result] } = await geocode(options)
-    if (result) {
-      const innerLat = result.geometry.location.lat
-      const innerLng = result.geometry.location.lng
-      const innerAddress = result.formatted_address
-      onChange(innerAddress, innerLat, innerLng)
+    if (!readOnly) {
+      const options = {
+        latlng: `${lat},${lng}`,
+        result_type: 'street_address|point_of_interest|park|natural_feature'
+      }
+      const { results: [result] } = await geocode(options)
+      if (result) {
+        const innerLat = result.geometry.location.lat
+        const innerLng = result.geometry.location.lng
+        const innerAddress = result.formatted_address
+        onChange(innerAddress, innerLat, innerLng)
+      }
     }
 	}
 	return (
     <Fragment>
-  		<div className="map">
+  		<div className="map" style={styles}>
   			<GoogleMapReact
       		bootstrapURLKeys={{key: `${GOOLGE_MAPS_KEY}&libraries=places`}}
       		defaultCenter={{lat: 50.61916542471506, lng: 26.25215096590341}}
           center={{lat, lng}}
-      		defaultZoom={14}
+      		defaultZoom={readOnly ? 16 : 14}
           scrollwheel={false}
           onGoogleApiLoaded={() => setReady(true)}
           options={maps => {
             return {
-              zoomControl: true,
+              gestureHandling: readOnly ? 'none' : 'greedy',
+              zoomControl: !readOnly,
+              draggableCursor: readOnly ? 'default' : 'grab',
               zoomControlOptions: {
                 style: maps.ZoomControlStyle.SMALL
               },
+              scrollwheel: !readOnly,
               fullscreenControl: false,
             }
           }}
@@ -59,7 +64,11 @@ const GoggleMap = ({lat, lng, address, onChange}) => {
           <Logo lat={lat} lng={lng} width={40} height={40} fill="#fbae17" />
       	</GoogleMapReact>
   		</div>
-      <Autocomplete value={address} onReady={ready} onSelect={onChange} onChange={onChange} />
+      {
+        !readOnly
+        ? <Autocomplete value={address} onReady={ready} onSelect={onChange} onChange={onChange} />
+        : <div></div>
+      }
     </Fragment>
 	)
 }

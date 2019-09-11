@@ -68,25 +68,44 @@ const getChefs = async (req, res) => {
 	const rawQuery = queries.chefsWithDistance(authUser.lat, authUser.lng)
 	const chefs = await User.findAll({
 		where: {'role': 'chef'},
-		attributes: [
-			[User.sequelize.literal(rawQuery), 'distance'],
-			'firstName',
-			'bussinesName',
-			'address',
-			'lat',
-			'lng',
-			'phone',
-			'userId'
-		],
+		attributes: {
+			include: [
+				[User.sequelize.literal(rawQuery), 'distance'],
+			],
+			exclude: ['createdAt', 'updatedAt', 'lng', 'lat', 'password', 'passwordResetToken', 'passwordTokenExpiry', 'role']
+		},
 		include: [
 			{
 				model: Meal,
 				as: 'meals',
-				attributes: ['imgUrl']
+				attributes: ['imgUrl'],
+				required: true,
 			}
 		]
 	})
-	return  res.status(200).json({chefs: chefs})
+	return res.status(200).json({chefs})
+}
+
+const getChefInfo = async (req, res) => {
+	const { chefId } = req.params
+	const { authUser } = req
+	const rawQuery = queries.chefsWithDistance(authUser.lat, authUser.lng)
+	const chef = await User.findByPk(chefId, {
+		attributes: {
+			exclude: ['createdAt', 'updatedAt', 'password', 'passwordResetToken', 'passwordTokenExpiry', 'role'],
+			include: [[User.sequelize.literal(rawQuery), 'distance']],
+		},
+		include: [
+			{
+				model: Meal,
+				as: 'meals',
+				attributes: {
+					exclude: ['createdAt', 'updatedAt', 'userId']
+				}
+			}
+		]
+	})
+	return res.status(200).json({chef: chef})
 }
 
 export default {
@@ -94,4 +113,5 @@ export default {
 	signup,
 	update,
 	getChefs,
+	getChefInfo,
 }

@@ -10,6 +10,15 @@ export const getChefs = () => dispatch => {
 	})
 }
 
+export const getChefInfo = chefId => dispatch => {
+	return get(`user/chefs/${chefId}`).then(res => {
+		if (res.statusCode === 200) {
+			dispatch(setChefsKey('chef', res.chef))
+		}
+		return res.statusCode === 200
+	})
+}
+
 export const setChefsKey = (key, data) => ({
 	type: types.SET_CHEFS_KEY,
 	key,

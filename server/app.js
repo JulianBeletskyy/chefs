@@ -7,11 +7,14 @@ import http from 'http'
 import jwt from 'jsonwebtoken'
 import path from 'path'
 import fs from 'fs'
+// import gzipStatic from 'connect-gzip-static'
+import compression from 'compression'
 
 const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
+app.use(compression())
 // app.use(pino);
 
 export let socketClient = null
@@ -59,6 +62,8 @@ app.get('/image/*', (req, res, next) => {
 })
 
 app.use(express.static(path.join(__dirname, '../build')))
+
+// app.use(gzipStatic(path.join(__dirname, '../build')));
 
 app.get('/*', async (req, res) => {
     res.sendFile(path.join(__dirname, '../build', 'index.html'))

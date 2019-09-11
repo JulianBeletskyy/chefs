@@ -6,14 +6,16 @@ import orders from './orders.js'
 import meals from './meals.js'
 import ui from './ui.js'
 import chefs from './chefs.js'
+import cart from './cart.js'
 
 const reducer = combineReducers({
-    routing: routerReducer,
-    user,
-    orders,
-    meals,
-    chefs,
-    ui,
+  routing: routerReducer,
+  user,
+  orders,
+  meals,
+  chefs,
+  cart,
+  ui,
 })
 
 export default reducer

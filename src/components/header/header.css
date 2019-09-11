@@ -1,17 +1,20 @@
 .header {
-	background-color: rgba(255,255,255,0.5);
-	backdrop-filter: blur(5px);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-   	padding: 5px 15px;
-    z-index: 1;
-}
-.header.private {
-	background-color: rgba(0,0,0,0.2);
+	background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+ 	padding: 5px 15px;
+  z-index: 2;
+  border-bottom: 2px solid rgb(78,199,238);
 }
 
-.header.private .link {
-	color: #fff;
+.header .link {
+	color: rgb(78,199,238);
+}
+
+.header-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(78,199,238);
 }

@@ -9,7 +9,7 @@ export const closeModal = () => ({
 	type: types.CLOSE_MODAL,
 })
 
-export const setNotify = (show, text, level = 'success') => ({
+export const setNotify = (show, text, level = 'success', delay = 2000) => ({
 	type: types.SET_NOTIFY,
-	data: {show, text, level}
+	data: {show, text, level, delay}
 })

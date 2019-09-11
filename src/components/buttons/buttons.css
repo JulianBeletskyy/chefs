@@ -1,65 +1,31 @@
-.btn-container {
-	position: relative;
-	display: inline-block;
-	overflow: hidden;
-	border: 1px solid #000;
-	transition: 0.5s;
-	letter-spacing: 1px;
-	border-radius: 5px;
+.bubbly-button {
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgb(78,199,238);
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  border: 1px solid rgb(78,199,238);
 }
-.btn-container .btn-main {
-	width: 100%;
-	height: 100%;
-	font-size: 20px;
-	letter-spacing: 1px;
-	background: #000;
-	-webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png");
-	mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png");
-	-webkit-mask-size: 3000% 100%;
-	mask-size: 3000% 100%;
-	border: none;
-	color: #fff;
-	cursor: pointer;
-	padding: 10px 15px;
-	font-family: 'Nunito', sans-serif;
-	-webkit-animation: ani2 0.7s steps(29) forwards;
-	animation: ani2 0.7s steps(29) forwards;
+  
+.bubbly-button:focus {
+    outline: 0;
 }
-.btn-container .btn-main:hover {
-	-webkit-animation: ani 0.7s steps(29) forwards;
-		animation: ani 0.7s steps(29) forwards;
+ 
+.bubbly-button:active {
+    transform: scale(0.9);
+    background-color: darken(#ff0081, 5%);
+    box-shadow: 0 2px 25px rgba(78,199,238, 0.2);
 }
-.mask {
-	position: absolute;
-	color: #000;
-	text-align: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-	padding: 10px 15px;
-	font-size: 20px;
-	overflow: hidden;
-}
-@-webkit-keyframes ani {
-  from {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
-  to {
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-  }
-}
-@keyframes ani2 {
-  from {
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-  }
-  to {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
+
+.bubbly-button:hover {
+	background-color: #fff;
+	color: rgb(78,199,238);
 }
 
 .link-wrapper {
@@ -78,8 +44,10 @@
 	font-size: 16px;
 	padding: 0px 10px;
 	top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(78,199,238);
+  font-weight: normal;
 }
 .link:hover {
     font-weight: bold;
