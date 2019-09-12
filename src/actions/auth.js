@@ -8,9 +8,9 @@ export const signup = data => dispatch => {
 		if (res.statusCode === 200) {
 			dispatch(setToken(res.data.token))
 			dispatch(setUserKey('data', res.data.user))
-			return res.data.user.role
+			return {role: res.data.user.role}
 		}
-		return res.statusCode === 200
+		throw res
 	})
 }
 

@@ -23,7 +23,7 @@ const PrivateRoute = ({dispatch, token, userId, isLoading, role, type, component
         return <Redirect to="/login" />
       }
       return  (
-        <div className={`layouts private h-100 ${role}`}>
+        <div className={`layouts private h-100 ${role}`} style={{backgroundImage: `url(/assets/img/back.jpg)`}}>
           <Header />
           <div className="container-fluid h-100 overflow-auto layout-content">
             <div className="row h-100">

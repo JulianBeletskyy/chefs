@@ -32,20 +32,23 @@ const login = async (req, res) => {
 }
 
 const signup = async (req, res) => {
-	const { firstName, login, password, role } = req.body
+	const { firstName, email, password, role } = req.body
 
 	await User.findOrCreate({
-		where: { email: login },
+		where: { email },
 		defaults: {
 			firstName,
 			role,
-			email: login,
-			phone: login,
+			email: email,
 			password,
 		}
 	}).then(([user, created]) => {
 		if (!created) {
-			return res.status(409).send({ error: 'Email already in use' });
+			return res.status(400).send({
+				validate: {
+					email: 'Email already in use'
+				}
+			})
 		}
 		const token = Authorization.generateToken(user)
 		return res.status(200).json({message: 'User created', data: {user: user, token}})

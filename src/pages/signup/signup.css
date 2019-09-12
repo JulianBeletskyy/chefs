@@ -2,26 +2,24 @@
 	position: relative;
 }
 
-.client-signup {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    transition: .4s;
-    transform-style: preserve-3d;
-    transform: rotateY(0);
-}
-
+.client-signup,
 .chef-signup {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     transition: .4s;
     transform-style: preserve-3d;
+}
+
+.client-signup {
+    position: absolute;
+    transform: rotateY(0);
+}
+
+.chef-signup {
     transform: rotateY(-180deg);
     opacity: 0;
 }
-
 .wrap-rotate-sides.chef .client-signup {
     transform: rotateY(180deg);
 }

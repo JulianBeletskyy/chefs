@@ -33,7 +33,7 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
         unique: true,
-        defaultValue: ''
+        defaultValue: null,
       },
       address: {
         type: DataTypes.STRING,

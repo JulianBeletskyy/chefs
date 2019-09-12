@@ -8,7 +8,7 @@ const Validator = new Validation()
 const authRoutes = express.Router()
 
 authRoutes.post('/login', Validator.login, UserController.login)
-authRoutes.post('/signup', UserController.signup)
+authRoutes.post('/signup', Validator.signup, UserController.signup)
 authRoutes.get('/refreshToken', Authorization.refreshToken)
 
 export default authRoutes;
