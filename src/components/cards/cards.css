@@ -50,7 +50,6 @@
 	color: #47c7f0;
 	font-size: 24px;
 	font-weight: bold;
-	
 }
 
 .meal-card-name,
@@ -58,7 +57,6 @@
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	
 }
 
 .meal-card-desc {

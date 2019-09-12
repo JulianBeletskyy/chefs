@@ -6,22 +6,26 @@ import { io } from '../app'
 import { queries } from '../utils'
 
 const login = async (req, res) => {
-	const { login, password } = req.body
+	const { email, password } = req.body
 	const user = await User.findOne({
-		where: { email: login }
+		where: { email }
 	})
 	if (!user) {
-		return res.status(401).json({ message: 'Invalid Credentials' })
+		return res.status(400).json({
+			validate: {
+				email: 'There is no user with this email'
+			}
+		})
 	}
 
 	const check = bcryptjs.compareSync(password, user.password)
 	if (!check) {
-		return res.status(401).json({ message: 'Invalid Password' })
+		return res.status(400).json({
+			validate: {
+				password: 'Invalid Password'
+			}
+		})
 	}
-	if (user.role === 'client') {
-		io.to('chefs').emit('clientLogin', {message: 'Client login!!!'})
-	}
-	
 	const token = Authorization.generateToken(user)
 
 	return res.status(200).json({message: 'User succesfully login', data: {user, token} })

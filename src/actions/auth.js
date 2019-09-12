@@ -20,9 +20,9 @@ export const login = data => dispatch => {
 			dispatch(setToken(res.data.token))
 			dispatch(setUserKey('data', res.data.user))
 			connectToUserRoom(res.data.user, res.data.token)
-			return res.data.user.role
+			return {role: res.data.user.role}
 		}
-		return res.statusCode === 200
+		throw res
 	})
 }
 

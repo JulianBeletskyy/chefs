@@ -1,5 +1,4 @@
 .header {
-	background-color: #fff;
   position: fixed;
   top: 0;
   left: 0;
@@ -7,6 +6,8 @@
  	padding: 5px 15px;
   z-index: 2;
   border-bottom: 2px solid rgb(78,199,238);
+  background-color: rgba(255,255,255,0.7);
+  backdrop-filter: blur(5px);
 }
 
 .header .link {

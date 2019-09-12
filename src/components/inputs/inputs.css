@@ -154,12 +154,25 @@ to {/**/
 	transition: left 0.28s ease, width 0.28s ease;
 	z-index: 2;
 }
+.textfield-input.invalid ~ .textfield-bar::before {
+	background: red;
+}
+.textfield-input.invalid.active ~  .textfield-label,
+.textfield-input.invalid:focus ~ .textfield-label {
+	color: red;
+}
 .textfield-input:focus ~ .textfield-bar::before,
 .textfield-input.active ~ .textfield-bar::before,
 .textarea-input:focus ~ .textfield-bar::before,
 .textarea-input.active ~ .textfield-bar::before {
 	width: 100%;
 	left: 0;
+}
+
+.error-message {
+	position: absolute;
+	color: red;
+	font-size: 12px;
 }
 
 input.apple-switch {

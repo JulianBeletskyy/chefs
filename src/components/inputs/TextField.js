@@ -6,7 +6,7 @@ const randomId = () => {
 	return '_' + Math.random().toString(36).substr(2, 9)
 }
 
-const TextField = ({type = 'text', value, onChange, placeholder, className, label, id = randomId(), inputRef}) => {
+const TextField = ({type = 'text', value, onChange, placeholder, className, label, id = randomId(), inputRef, isValid = true, errorMessage}) => {
 	let input = null
 	const [active, setActive] = useState(!!value)
 	const [readOnly, setReadOnly] = useState(true)
@@ -47,9 +47,10 @@ const TextField = ({type = 'text', value, onChange, placeholder, className, labe
 				readOnly={readOnly}
 				onFocus={handleFocus}
 				onChange={handleChange}
-				className={cn('textfield-input', {active: active})} placeholder={placeholder} />
+				className={cn('textfield-input', {active: active, invalid: !isValid})} placeholder={placeholder} />
 			<label htmlFor="input" className="textfield-label">{label}</label>
 			<i className="textfield-bar"></i>
+			{errorMessage && <span className="error-message">{errorMessage}</span>}
 		</div>
 	)
 }
