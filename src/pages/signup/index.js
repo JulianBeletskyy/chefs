@@ -54,7 +54,9 @@ const Signup = () => {
 				}
 			})
 			.catch(({validate}) => {
-				setValidate(validate)
+				if (validate) {
+					setValidate(validate)
+				}
 			})
 	}
 	const { client, chef } = form
@@ -64,22 +66,22 @@ const Signup = () => {
 				<div className={cn('wrap-rotate-sides', {chef: form.type === 'chef'})}>
 					<div className="client-signup" autoComplete="disabled">
 						<div className="card">
-							<div className="card-title">
+							<div className="card-title mb-2">
 								Signup Eater
 							</div>
 							<form>
-								<TextField
-									isValid={!validate.email}
-									errorMessage={validate.email}
-									label="Email"
-									onChange={val => handleChange('email', val)}
-									value={client.email} />
 								<TextField
 									isValid={!validate.firstName}
 									errorMessage={validate.firstName}
 									label="First Name"
 									onChange={val => handleChange('firstName', val)}
 									value={client.firstName} />
+								<TextField
+									isValid={!validate.email}
+									errorMessage={validate.email}
+									label="Email"
+									onChange={val => handleChange('email', val)}
+									value={client.email} />
 								<TextField
 									isValid={!validate.password}
 									errorMessage={validate.password}
@@ -105,7 +107,7 @@ const Signup = () => {
 					</div>
 					<div className="chef-signup">
 						<div className="card">
-							<div className="card-title text-right">
+							<div className="card-title text-right mb-2">
 								Signup Chef
 							</div>
 							<form>

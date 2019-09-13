@@ -1,7 +1,35 @@
-.droppable-list {
-	margin-right: 10px;
+.droppable-list-wrapper {
+  	padding: 5px;
+    min-width: 250px;
+}
+
+@media (max-width: 375px) {
+	.droppable-list-wrapper {
+		min-width: calc(100vw - 0.5rem);
+	}
 }
 
 .droppable-list-title {
 	font-size: 16px;
+	color: rgb(78,199,238);
+	font-weight: bold;
+	background-color: rgba(255,255,255,0.7);
+  	backdrop-filter: blur(5px);
+  	border-radius: 5px;
+  	margin-bottom: 10px;
+  	padding: 5px 0px;
+}
+
+.droppable-list {
+    height: calc(100vh - 133px);
+}
+
+.droppable-list::-webkit-scrollbar {
+	background-color: transparent;
+	width: 6px;
+}
+
+.droppable-list::-webkit-scrollbar-thumb {
+	background-color: #cfcfcf;
+	border-radius: 10px;
 }

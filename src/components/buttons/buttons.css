@@ -4,28 +4,26 @@
   padding: 1em 2em;
   -webkit-appearance: none;
   appearance: none;
-  background-color: rgb(78,199,238);
+  background-color: rgb(251, 174, 23);
   color: #fff;
   border-radius: 4px;
   cursor: pointer;
   position: relative;
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-  border: 1px solid rgb(78,199,238);
+  border: 1px solid rgb(251, 174, 23);
 }
   
 .bubbly-button:focus {
-    outline: 0;
+  outline: 0;
 }
  
 .bubbly-button:active {
-    transform: scale(0.9);
-    background-color: darken(#ff0081, 5%);
-    box-shadow: 0 2px 25px rgba(78,199,238, 0.2);
+  transform: scale(0.9);
 }
 
 .bubbly-button:hover {
 	background-color: #fff;
-	color: rgb(78,199,238);
+	color: rgb(251, 174, 23);
 }
 
 .link-wrapper {
@@ -35,20 +33,19 @@
 
 .fake-link {
 	opacity: 0;
-	font-size: 16px;
 	padding: 0px 10px;
 }
 
 .link {
 	position: absolute;
-	font-size: 16px;
 	padding: 0px 10px;
 	top: 0px;
   left: 50%;
   transform: translateX(-50%);
-  color: rgb(78,199,238);
+  color: rgb(251, 174, 23);
   font-weight: normal;
 }
-.link:hover {
+.link:hover,
+.link.active {
     font-weight: bold;
 }

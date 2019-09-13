@@ -9,35 +9,35 @@ import './layouts.css'
 const ChefSideBar = lazy(() => import('../components/sidebars/chef'))
 const Cart = lazy(() => import('../components/cart'))
 
-const PrivateRoute = ({dispatch, token, userId, isLoading, role, type, component: Component, ...rest}) => {
+const PrivateRoute = ({dispatch, token, user, isLoading, type, component: Component, ...rest}) => {
   useEffect(() => {
-    if (token && !userId && !isLoading) {
+    if (token && !user.userId && !isLoading) {
       dispatch(refreshToken())
     }
-  }, [token, userId, dispatch])
+  }, [token, user.userId, dispatch])
   const render = props => {
-    if (token && !userId) {
+    if (token && !user.userId) {
       return <Loader />
-    } else if (userId) {
-      if (role !== type) {
+    } else if (user.userId) {
+      if (user.role !== type) {
         return <Redirect to="/login" />
       }
       return  (
-        <div className={`layouts private h-100 ${role}`} style={{backgroundImage: `url(/assets/img/back.jpg)`}}>
+        <div className={`layouts private h-100 ${user.role}`} style={{backgroundImage: `url(/assets/img/back.jpg)`}}>
           <Header />
-          <div className="container-fluid h-100 overflow-auto layout-content">
+          <div className="container-fluid h-100 overflow-auto layout-content pt-3">
             <div className="row h-100">
               {
-                role === 'chef'
-                &&  <div className="col-sm-3">
-                    <ChefSideBar />
+                user.role === 'chef'
+                &&  <div className="col-lg-3 d-none d-lg-block">
+                    <ChefSideBar user={user} />
                   </div>
               }
-              <div className="col-sm-9">
+              <div className="col-lg-9 col-12">
                 <Component {...props} />
               </div>
               {
-                role === 'client'
+                user.role === 'client'
                 &&  <div className="col-sm-3">
                     <Cart />
                   </div>
@@ -55,8 +55,7 @@ const PrivateRoute = ({dispatch, token, userId, isLoading, role, type, component
 const mapStateToProps = ({user}) =>
   ({
     token: user.token,
-    userId: user.data.userId,
-    role: user.data.role,
+    user: user.data,
     isLoading: user.loading,
   })
 

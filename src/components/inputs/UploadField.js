@@ -5,12 +5,19 @@ const UploadField = ({onChange, src}) => {
 	const [base64, setBase] = useState(null)
 	const handleChange = ({target: {files}}) => {
 		const [file] = files
-		const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = () => {
-        	setBase(reader.result)
-        }
-        onChange(file)
+		window.loadImage(
+			file,
+			(canvas, data) => {
+				const base64 = canvas.toDataURL()
+				setBase(base64)
+				fetch(base64).then(async res => {
+					const blob = await res.blob()
+					const newFile = new window.File([blob], file.name, {type: file.type})
+					onChange(newFile)
+				})
+			},
+			{ orientation: true }
+		)
 	}
 	return (
 		<div className="upload">

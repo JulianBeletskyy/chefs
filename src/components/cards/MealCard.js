@@ -4,7 +4,7 @@ import BtnMain from '../buttons/BtnMain'
 import ReactTooltip from 'react-tooltip'
 import './cards.css'
 
-const MealCard = ({imgUrl, description, ingredients, name, price, weight, editMeal, role, addToBasket}) => {
+const MealCard = ({imgUrl, description, ingredients, name, price, weight, editMeal, role, addToBasket, mealId}) => {
 	return (
 		<div className={cn(`meal-card d-flex flex-column ${role}`)} onClick={editMeal}>
 			<div>
@@ -17,12 +17,12 @@ const MealCard = ({imgUrl, description, ingredients, name, price, weight, editMe
 					role === 'client' && <div className="meal-card-price">{price} UAH</div>
 				}
 			</div>
-			<div data-tip={description} data-for="description" className="meal-card-desc">{description}&nbsp;</div>
-			<ReactTooltip place="top" className="tooltip" id="description" />
+			<div data-tip={description} data-for={`description-${mealId}`} className="meal-card-desc">{description}&nbsp;</div>
+			<ReactTooltip place="top" className="tooltip" id={`description-${mealId}`} />
 			<div className="meal-card-footer mt-auto">
 				<div className="meal-card-ingredients">
-					<strong>Ingridients: </strong><span data-tip={ingredients} data-for="ingredients">{ingredients}</span>
-					<ReactTooltip place="top" className="tooltip" id="ingredients" />
+					<strong>Ingridients: </strong><span data-tip={ingredients} data-for={`description-${mealId}`}>{ingredients}</span>
+					<ReactTooltip place="top" className="tooltip" id={`description-${mealId}`} />
 				</div>
 				<div className="mb-2"><strong>Weight: </strong>{weight}gr</div>
 				{

@@ -30,12 +30,12 @@ const Cart = ({dispatch, cart}) => {
 		return (
 			<Fragment>
 				<div className="col-4 pr-1 cart-meal-name">{meal.name}</div>
-				<div className="col-3 px-1 text-center">
+				<div className="col-4 px-1 text-center">
 					<span className={cn('cart-minus', {disabled: !(meal.quantity > 1)})} onClick={decrementMeal(meal)}>-</span>
 					<span className="cart-quantity">{meal.quantity}</span>
 					<span className="cart-plus" onClick={incrementMeal(meal)}>+</span>
 				</div>
-				<div className="col-5 px-1 text-right">
+				<div className="col-4 pl-1 text-right">
 					{meal.total} UAH
 					<span className="cart-remove" onClick={removeMeal(meal)}>x</span>
 				</div>
@@ -43,9 +43,8 @@ const Cart = ({dispatch, cart}) => {
 		)
 	}
 	return (
-		<div className="cart-wrapper col-sm-3">
+		<div className="cart-wrapper">
 			<div className="cart-inner">
-				<div className="cart-background"></div>
 				<div className="cart d-flex flex-column">
 					<div className="text-center">
 						<div className="cart-title">Basket</div>

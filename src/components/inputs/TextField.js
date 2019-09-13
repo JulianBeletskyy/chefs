@@ -47,7 +47,7 @@ const TextField = ({type = 'text', value, onChange, placeholder, className, labe
 				readOnly={readOnly}
 				onFocus={handleFocus}
 				onChange={handleChange}
-				className={cn('textfield-input', {active: active, invalid: !isValid})} placeholder={placeholder} />
+				className={cn('textfield-input', className, {active: active, invalid: !isValid})} placeholder={placeholder} />
 			<label htmlFor="input" className="textfield-label">{label}</label>
 			<i className="textfield-bar"></i>
 			{errorMessage && <span className="error-message">{errorMessage}</span>}

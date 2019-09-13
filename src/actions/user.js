@@ -5,8 +5,9 @@ export const updateProfile = data => dispatch => {
 	return put(`user`, data).then(res => {
 		if (res.statusCode === 200) {
 			dispatch(updateUser(res.user))
+			return true
 		}
-		return res.statusCode === 200
+		throw res
 	})
 }
 

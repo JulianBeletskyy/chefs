@@ -9,7 +9,7 @@ const DropDown = ({options, onClick}) => {
 	const [show, setShow] = useState(false)
 	useEffect(() => {
 		if (show) {
-			document.body.addEventListener('click', closeDropDown)
+			document.body.addEventListener('click', closeDropDown, {once: true})
 		}
 		return () => {
 			document.body.removeEventListener('click', closeDropDown)

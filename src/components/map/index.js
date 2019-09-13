@@ -16,7 +16,7 @@ const geocode = options => {
   }).then(async response => response.json())
 }
 
-const GoggleMap = ({lat, lng, address, onChange, readOnly = false, styles = {} }) => {
+const GoggleMap = ({lat, lng, address, onChange, readOnly = false, styles = {}, errorMessage, isValid }) => {
   const [ready, setReady] = useState(false)
   if (!lat || !lng) {
     lat = 50.61916542471506
@@ -40,7 +40,7 @@ const GoggleMap = ({lat, lng, address, onChange, readOnly = false, styles = {} }
 	}
 	return (
     <Fragment>
-  		<div className="map" style={styles}>
+  		<div className="map mb-2" style={styles}>
   			<GoogleMapReact
       		bootstrapURLKeys={{key: `${GOOLGE_MAPS_KEY}&libraries=places`}}
       		defaultCenter={{lat: 50.61916542471506, lng: 26.25215096590341}}
@@ -66,7 +66,13 @@ const GoggleMap = ({lat, lng, address, onChange, readOnly = false, styles = {} }
   		</div>
       {
         !readOnly
-        ? <Autocomplete value={address} onReady={ready} onSelect={onChange} onChange={onChange} />
+        ? <Autocomplete
+            value={address}
+            onReady={ready}
+            onSelect={onChange}
+            onChange={onChange}
+            errorMessage={errorMessage}
+            isValid={isValid} />
         : <div></div>
       }
     </Fragment>

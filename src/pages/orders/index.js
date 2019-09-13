@@ -9,6 +9,12 @@ const Orders = ({dispatch, orders}) => {
 	useEffect(() => {
 		dispatch(getOrders())
 	}, [])
+	const onDragStart = (props) => {
+		console.log(props)
+		if (window.navigator.vibrate) {
+    	window.navigator.vibrate(100)
+    }
+	}
 	const onDragEnd = ({source, destination}) => {
 		if (!destination) {
 			return
@@ -31,7 +37,7 @@ const Orders = ({dispatch, orders}) => {
 	return (
 		<div className="orders h-100">
 			<div className="d-flex overflow-auto">
-				<DragDropContext onDragEnd={onDragEnd}>
+				<DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
 					<Droppable
 						droppableId="pending"
 						children={(provided, snapshot) => 

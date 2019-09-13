@@ -13,7 +13,7 @@ const Chefs = ({dispatch, chefs}) => {
 		history.push(`/chef/${chefId}`)
 	}
 	return (
-		<div className="chefs h-100">
+		<div className="chefs h-100 pt-3">
 			<div className="row">
 				{
 					chefs.map((chef, i) => <div key={i} className="col-sm-3"><ChefCard {...chef} onClick={goToChef(chef.userId)} /></div>)

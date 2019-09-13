@@ -32,8 +32,7 @@ export default (sequelize, DataTypes) => {
       phone: {
         type: DataTypes.STRING,
         allowNull: true,
-        unique: true,
-        defaultValue: null,
+        defaultValue: '',
       },
       address: {
         type: DataTypes.STRING,

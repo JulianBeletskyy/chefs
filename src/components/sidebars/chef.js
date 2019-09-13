@@ -1,33 +1,27 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, {useState} from 'react'
 import './sidebars.css'
 import Link from '../buttons/Link'
 
+let input = null
+
 const ChefSideBar = ({user}) => {
+	const [,page] = window.location.pathname.split('/')
 	return (
-		<div className="sidebar chef h-100">
-			<div className="logo" style={{backgroundImage: `url(${user.logo || '/assets/img/default-logo.png'})`}}>
-			</div>
-			<div className="chef-title logo-font">{user.firstName}</div>
-			<div>
-				<div className="mb-3">
-					<Link to="/dashboard" title="Dashboard" />
+		<div className="sidebar chef">
+			<div className="chef-title logo-font mb-3 text-center py-3">{user.bussinesName}</div>
+			<div className="pl-3">
+				<div className="mb-3 sidebar-link">
+					<Link to="/dashboard" title="Dashboard" active={page === 'dashboard'} />
 				</div>
-				<div className="mb-3">
-					<Link to="/meals" title="Meals" />
+				<div className="mb-3 sidebar-link">
+					<Link to="/meals" title="Meals" active={page === 'meals'} />
 				</div>
-				<div className="mb-3">
-					<Link to="/orders" title="Orders" />
+				<div className="mb-3 sidebar-link">
+					<Link to="/orders" title="Orders" active={page === 'orders'} />
 				</div>
 			</div>
 		</div>
 	)
 }
 
-const mapStateToProps = ({user}) => {
-	return {
-		user: user.data
-	}
-}
-
-export default connect(mapStateToProps)(ChefSideBar)
+export default ChefSideBar

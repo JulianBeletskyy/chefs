@@ -3,7 +3,7 @@
 }
 
 .dropdown-title {
-    color: rgb(78,199,238);
+    color: var(--main-color);
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
@@ -19,6 +19,7 @@
     min-width: 100px;
     box-shadow: 0px 1px 10px 1px rgba(0,0,0,0.2);
 	display: none;
+    border-radius: 5px;
 }
 
 .dropdown-list.show {
@@ -26,12 +27,12 @@
 }
 
 .dropdown-item {
-    padding: 5px 10px;
+    padding: 10px 15px;
     cursor: pointer;
 }
 
 .dropdown-item:hover {
-	background-color: rgba(0,0,0,0.2);
+	background-color: var(--main-color);
 	color: #fff;
 	font-weight: bold;
 }

@@ -21,7 +21,7 @@ const Meals = ({dispatch, meals}) => {
 			</div>
 			<div className="row">
 				{
-					meals.map((meal, i) => <div key={i} className="col-sm-3"><MealCard {...meal} editMeal={() => openModal(meal)} /></div>)
+					meals.map((meal, i) => <div key={i} className="col-sm-3 mb-3"><MealCard {...meal} editMeal={() => openModal(meal)} /></div>)
 				}
 			</div>
 		</div>

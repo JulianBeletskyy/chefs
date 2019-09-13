@@ -8,7 +8,7 @@ const PublicRoute = ({path, component: Component}) => {
   return (
     <div className="public h-100" style={{backgroundImage: `url(/assets/img/back.${extension()})`}}>
       <Header />
-      <div className="public-content h-100">
+      <div className="public-content overflow-auto h-100">
 	      <div className="container-fluid h-100">
 	        <Route to={path} exact component={Component} />
 	      </div>

@@ -73,6 +73,10 @@
 	color: #fe6501;
 }
 
+.textfield-input.autocomplete::placeholder {
+	color: transparent;
+}
+
 input:-webkit-autofill {
     animation-name: onAutoFillStart;
     animation-fill-mode: both;
@@ -131,7 +135,6 @@ to {/**/
 .textfield-input.active ~ .textfield-label,
 .textarea-input:focus ~ .textfield-label,
 .textarea-input.active ~ .textfield-label {
-	color: #337ab7;
 	font-size: 0.8rem;
 	color: #337ab7;
 	top: -0.25rem;

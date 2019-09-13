@@ -8,11 +8,21 @@ const makeJson = async (response, status) => {
     return Promise.resolve({...json, statusCode: status})
 }
 
-const responseHandler = alert => response => {
+const responseHandler = alert => async response => {
     if (response.status === 401) {
         store.dispatch(logout())
     }
     const contentType = response.headers.get('content-type')
+
+    if (contentType && contentType.indexOf('application/octet-stream') !== -1) {
+        const file = await response.blob()
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => {
+            console.log(reader.result)
+        }
+        
+    }
     if (contentType && contentType.indexOf('application/json') !== -1) {
         const promise = makeJson(response, response.status)
         promise.then(({message}) => {
@@ -24,6 +34,10 @@ const responseHandler = alert => response => {
         return promise
     }
     return Promise.resolve({statusCode: response.status})
+}
+
+const errorHandler = error => {
+    store.dispatch(setNotify(true, error.toString(), 'error'))
 }
 
 export const getHeader = () => {
@@ -42,6 +56,7 @@ export const get = (url, alert = false) => {
         headers: getHeader(),
     })
     .then(responseHandler(alert))
+    .catch(errorHandler)
 }
 
 export const post = (url, body, alert = true) => {
@@ -52,9 +67,10 @@ export const post = (url, body, alert = true) => {
         body: JSON.stringify(body)
     })
     .then(responseHandler(alert))
+    .catch(errorHandler)
 }
 
-export const put = (url, body, alert = false) => {
+export const put = (url, body, alert = true) => {
     // store.dispatch(setUiKey('onRequest', true))
     return fetch(`${API_URL}/${url}`, {
         method: 'put',
@@ -62,6 +78,7 @@ export const put = (url, body, alert = false) => {
         body: JSON.stringify(body)
     })
     .then(responseHandler(alert))
+    .catch(errorHandler)
 }
 
 export const remove = (url, alert = false) => {
@@ -70,6 +87,7 @@ export const remove = (url, alert = false) => {
         headers: getHeader()
     })
     .then(responseHandler(alert))
+    .catch(errorHandler)
 }
 
 export const patch = (url, body, alert = false) => {
@@ -79,6 +97,7 @@ export const patch = (url, body, alert = false) => {
         body: JSON.stringify(body)
     })
     .then(responseHandler(alert))
+    .catch(errorHandler)
 }
 
 export const file = (url, body, alert = false) => {
@@ -86,10 +105,10 @@ export const file = (url, body, alert = false) => {
     return fetch(`${API_URL}/${url}`, {
         method: 'post',
         headers: {
-            // 'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${user.token}`
         },
         body: body
     })
     .then(responseHandler(alert))
+    .catch(errorHandler)
 }

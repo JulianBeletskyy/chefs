@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
-/*@import url('https://fonts.googleapis.com/css?family=Amatic+SC&display=swap');*/
+
+:root {
+  --main-color: rgb(251, 174, 23);
+}
 
 body {
   margin: 0;
@@ -39,10 +42,6 @@ div:focus {
   overflow: hidden;
 }
 
-.logo-font {
-  font-family: 'Amatic SC', cursive;
-}
-
 .h-100 {
   height: 100%;
 }
@@ -74,12 +73,10 @@ div:focus {
 }
 
 .card {
-  border: 5px solid rgb(78,199,238);
-  background-color: rgba(255,255,255,0.7);
-  backdrop-filter: blur(5px);
+  background-color: #fff;
   position: relative;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: 5px;
+  padding: 30px;
 }
 
 .card-title {

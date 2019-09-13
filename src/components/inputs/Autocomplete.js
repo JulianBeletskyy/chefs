@@ -4,7 +4,7 @@ import { GOOLGE_MAPS_KEY } from '../../config'
 
 let autocompleteInput = null
 
-const Autocomplete = ({value, onReady, init = false, onSelect, onChange}) => {
+const Autocomplete = ({value, onReady, init = false, onSelect, onChange, isValid, errorMessage}) => {
 	useEffect(() => {
 		if (onReady) {
 			addGoogleListener()
@@ -38,7 +38,14 @@ const Autocomplete = ({value, onReady, init = false, onSelect, onChange}) => {
 	    }
 	}
 	return (
-		<TextField value={value} inputRef={ref => autocompleteInput = ref} onChange={onChange} />
+		<TextField
+			value={value}
+			className="autocomplete"
+			label="Address"
+			inputRef={ref => autocompleteInput = ref}
+			isValid={isValid}
+			errorMessage={errorMessage}
+			onChange={onChange} />
 	)
 }
 

@@ -17,7 +17,7 @@ const Chef = ({dispatch, chefId, chef}) => {
 		dispatch(addToCart(meal.mealId))
 	}
 	return (
-		<div className="chef">
+		<div className="chef pt-3">
 			<div className="chef-info mb-3">
 				<div className="row">
 					<div className="col-sm-2">

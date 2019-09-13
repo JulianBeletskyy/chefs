@@ -34,7 +34,6 @@ export default {
       phone: {
         type: Sequelize.STRING,
         allowNull: true,
-        unique: true,
         defaultValue: ''
       },
       address: {

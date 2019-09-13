@@ -29,14 +29,16 @@ const Login = () => {
           return
       }
     }).catch(({validate}) => {
-      setValidate(validate)
+      if (validate) {
+        setValidate(validate)
+      }
     })
   }
   return (
     <div className="row justify-content-center align-items-center h-100">
       <div className="col-md-6 col-lg-4">
           <div className="card">
-            <div className="card-title">
+            <div className="card-title mb-2">
               Login
             </div>
             <form>
