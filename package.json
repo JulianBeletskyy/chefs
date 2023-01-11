@@ -11,7 +11,7 @@
     "google-map-react": "^1.1.4",
     "history": "^4.9.0",
     "js-cookie": "^2.2.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "line-clamp": "^1.0.0",
     "multer": "^1.4.2",
     "pg": "^7.12.1",
